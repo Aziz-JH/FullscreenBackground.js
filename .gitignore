@@ -1,0 +1,7 @@
+# Common IDE files
+.buildpath
+.project
+.settings/
+.build/
+.idea/
+nbproject/
