@@ -1,9 +1,8 @@
 /**
- * FullscreenBackground
+ * FullscreenBackground.js
  * @author Julian Haslinger
- * @version 0.0.1
+ * @version 0.0.2
  * @link http://aziz.wtf/plugins/FullscreenBackground
- * @description based on https://github.com/Gaya/Fullscreen-Background-jQuery-plugin
  */
 (function () {
 	this.FullscreenBackground = function () {
@@ -14,16 +13,28 @@
 			defaults = {
 				selector: 'img',
 				fillOnResize: true,
-				defaultCss: true
+				defaultCss: true,
+				topOffset: 0,
+				leftOffset: 0,
+				rightOffset: 0,
+				bottomOffset: 0
 			};
 
-		var element = "";
-		var arrElements = [];
+		var element = "",
+			arrElements = [];
 		switch (typeof arg[0]) {
 			case('string'):
-				arrElements = [document.getElementById(arg[0])];
+				arrElements = document.querySelectorAll(arg[0]);
 				break;
 			default:
+				if(arg[0] instanceof HTMLElement) {
+					arrElements.push(arg[0]);
+					break;
+				}
+				if(arg[0] instanceof jQuery) {
+					arrElements = arg[0].toArray();
+					break;
+				}
 				throw 'no element defined';
 		}
 
@@ -53,7 +64,6 @@
 				element.style.top = 0;
 				element.style.left = 0;
 				element.style.zIndex = 1;
-
 			}
 
 			run(options.selector, element);
@@ -72,6 +82,9 @@
 		function fillBg(selector, parentElement) {
 			var windowHeight = isNaN(window.innerHeight) ? window.clientHeight : window.innerHeight;
 			var windowWidth = isNaN(window.innerWidth) ? window.clientWidth : window.innerWidth;
+
+			windowHeight = windowHeight - options.topOffset;
+			windowWidth = windowWidth - options.leftOffset;
 
 			var arrImages = parentElement.children;
 
@@ -97,10 +110,10 @@
 					leftMargin = ((newWidth - windowWidth) / 2) * -1;
 				}
 
-				image.style.height = newHeight + 'px';
-				image.style.width = newWidth + 'px';
-				image.style.marginLeft = leftMargin + 'px';
-				image.style.marginTop = topMargin + 'px';
+				image.style.height = Math.floor(newHeight) + 'px';
+				image.style.width = Math.floor(newWidth) + 'px';
+				image.style.marginLeft = Math.floor(leftMargin) + 'px';
+				image.style.marginTop = Math.floor(topMargin) + 'px';
 				image.style.display = 'block';
 			}
 		}
