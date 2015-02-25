@@ -1,7 +1,7 @@
 /**
  * FullscreenBackground.js
  * @author Julian Haslinger
- * @version 0.0.2
+ * @version 0.0.3
  * @link http://aziz.wtf/plugins/FullscreenBackground.js
  */
 (function () {
