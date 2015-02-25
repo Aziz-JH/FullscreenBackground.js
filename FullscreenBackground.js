@@ -1,8 +1,8 @@
 /**
  * FullscreenBackground.js
  * @author Julian Haslinger
- * @version 0.0.2
- * @link http://aziz.wtf/plugins/FullscreenBackground
+ * @version 0.0.3
+ * @link http://aziz.wtf/plugins/FullscreenBackground.js
  */
 (function () {
 	this.FullscreenBackground = function () {
@@ -38,6 +38,7 @@
 				throw 'no element defined';
 		}
 
+		if(typeof arg[1] != 'object') arg[1] = {};
 		if (arg[1] && typeof arg[1] === 'object') {
 			this.options = extendDefaults(defaults, arg[1]);
 		}
@@ -63,7 +64,6 @@
 				element.style.position = 'fixed';
 				element.style.top = 0;
 				element.style.left = 0;
-				element.style.zIndex = 1;
 			}
 
 			run(options.selector, element);
