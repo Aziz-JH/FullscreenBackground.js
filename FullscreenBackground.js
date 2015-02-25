@@ -64,7 +64,6 @@
 				element.style.position = 'fixed';
 				element.style.top = 0;
 				element.style.left = 0;
-				element.style.zIndex = 1;
 			}
 
 			run(options.selector, element);
