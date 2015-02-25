@@ -38,6 +38,7 @@
 				throw 'no element defined';
 		}
 
+		if(typeof arg[1] != 'object') arg[1] = {};
 		if (arg[1] && typeof arg[1] === 'object') {
 			this.options = extendDefaults(defaults, arg[1]);
 		}
